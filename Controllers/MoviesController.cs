@@ -20,7 +20,6 @@ namespace WebApplication1.Controllers
         }
 
         // GET: Movies
-        // GET: Movies
         public async Task<IActionResult> Index(string movieGenre, string searchString)
         {
             if (_context.Movie == null)
@@ -53,6 +52,7 @@ namespace WebApplication1.Controllers
 
             return View(movieGenreVM);
         }
+
         [HttpPost]
         public string Index(string searchString, bool notUsed)
         {
@@ -87,7 +87,7 @@ namespace WebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -119,7 +119,7 @@ namespace WebApplication1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
             if (id != movie.Id)
             {

@@ -132,7 +132,68 @@ Next, Controller Actions and HTTP Methods: The Movies controller contains two Ed
 
 then View Template (Edit.cshtml): The Edit view template is generated based on the Movie model and includes Tag Helpers for rendering form elements.
 
-Part 7 ()
+Part 7 (add search to an ASP.NET Core MVC app)
+Thursday 2024-02-01 1124
+
+Initially, i did basic Movie Title Search here the Index method initially takes a parameter searchString for movie title search.
+
+Then switched to Using "id" Parameter the method signature is changed to accept a parameter named id instead of searchString.
+All occurrences of searchString are replaced with id.
+
+Then completed HTML Form for User Input, In the Views/Movies/Index.cshtml file, a form is added using the Form Tag Helper to allow  to input the search criteria.
+
+Next, HTTP GET Request for Search, to enable to bookmark or share search results, the form method is changed to "get."
+
+Then added Genre Search, a new class MovieGenreViewModel is added to the Models folder, which includes properties for a list of movies, a SelectList of genres, selected genre, and search string.
+
+Updated Index View here the Views/Movies/Index.cshtml file is updated to use the MovieGenreViewModel.
+A dropdown list for genres is added, allowing to filter movies by genre.
+
+Display Movie List in View is completed,the movies and their details are displayed in a table in the view using HTML Helper methods.
+The table headers and rows are generated dynamically based on the model properties.
+
+Part 8 (add a new field to an ASP.NET Core MVC app)
+Thursday 2024-02-01
+
+I added Rating Property to Movie Model, a new property Rating of type string is added to the Movie model.
+
+Then update Binding in MoviesController, In the MoviesController.cs file, the [Bind] attribute is updated for both the Create and Edit action methods.
+The Rating property is included in the binding to ensure it is considered during model binding.
+
+Next Updated Index View, In the Views/Movies/Index.cshtml file, the table displaying movies is updated to include a column for the Rating property.
+The @Html.DisplayNameFor and @Html.DisplayFor HTML Helpers are used to generate the headers and display the rating for each movie.
+
+Update Create View, the Views/Movies/Create.cshtml file is updated to include a field for entering the movie rating.
+The asp-for attribute is set to "Rating" to bind the input field to the Rating property in the model.
+
+Then Updated SeedData, In the SeedData class, sample data for the Rating property is added for one of the movies.
+This ensures that the new property has a value when the database is seeded.
+
+I did Database Migration, Code First Migrations is used to update the database schema to include the new Rating property.
+The Update-Database command applies the migration to update the database schema.
+
+In the last Verified and Run the App, and it support creating, editing, and displaying movies with the new Rating property.
+
+Part 9 (add validation to an ASP.NET Core MVC app)
+Thursday 2024-02-8 1120
+
+Observation: Validation properties are implemented in an ASP.
+NET Core Movie class, as demonstrated in the course, with a focus on their importance in maintaining data integrity. 
+Important things to remember are to utilize DataType for formatting cues and properties like Required, StringLength, 
+and RegularExpression for validation. The lesson emphasizes the advantages of having validation rules centralized in the model class, 
+which helps to create a codebase that is organized and easy to maintain. 
+It also shows how validation may be used practically, both on the client and server sides, 
+making the web application more reliable and user-friendly.
+
+Part 10 (examine the Details and Delete methods of an ASP.NET Core app)
+Thursday 2024-02-8 1131
+
+Observation: The code sample demonstrates how the ASP.NET Core Movie controller functions (Delete, DeleteConfirmed, and Details) 
+are implemented securely. It highlights how crucial it is to validate movie IDs in order to stop security flaws. 
+While the HTTP GET Delete method verifies IDs prior to showing data, the data method collects movie details. 
+By using attributes to get around the common language runtime limitation on identical method names and signatures, 
+the HTTP POST DeleteConfirmed method safely manages movie deletion. All things considered, the code is a perfect example of
+safe HTTP GET and POST procedures in an ASP.NET Core application.
 
 
 
